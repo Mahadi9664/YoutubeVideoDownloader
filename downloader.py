@@ -12,7 +12,23 @@ def download_video(url, save_path):
     except Exception as e:
         print(e)
 
-url = "https://www.youtube.com/watch?v=30U1M5giElY"
-save_path = "C:\Users\Hp\Downloads"
+def open_file_diaglog():
+    folder = filedialog.askdirectory()
+    if folder:
+        print(f"Selected folder: {folder}")
 
-download_video(url,save_path)
+    return folder
+
+
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    root.withdraw()
+
+    video_url = input("Please enter a youtube url: ")
+    save_dir = open_file_diaglog()
+
+    if not save_dir:
+        print("please select a folder...")
+    else:
+        download_video(video_url, save_dir)
